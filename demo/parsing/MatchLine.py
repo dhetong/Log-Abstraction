@@ -7,6 +7,8 @@ def singleTokenCompare(logTokens, tokenFile, threshold, outputFile):
             tokenList = tokenFile.readlines(100000);
             findIdentifier = False;
             if not tokenList:
+                if not findIdentifier:
+                    token = '#';
                 break;
             for tokenItem in tokenList:
                 if token in tokenItem:
