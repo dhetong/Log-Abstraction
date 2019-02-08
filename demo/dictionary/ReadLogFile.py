@@ -1,28 +1,9 @@
 from demo.common.Common import tokenGenerator;
 
-def tokenFind(token, dictionaryFile):
-    find = False;
-    while 1:
-        tokenLines = dictionaryFile.readline(1000000);
-        if not tokenLines:
-            if not find:
-                dictionaryFile.writeline(token + ',1');
-            break;
-        for line in tokenLines:
-            if token in line:
-                find = True;
-                tmp = line.split(',');
-                frequency = int(tmp[1]);
-                frequency = frequency + 1;
-                line = line.replace(tmp[1], str(frequency));
-                dictionaryFile.writeline(line);
-                break;
-        if find:
-            break;
-
-def dictionarySetUp(logFileName, DictionaryFileName):
+def dictionarySingleSetUp(logFileName, DictionaryFileName):
     logFile = open(logFileName, 'r');
     dictionaryFile = open(DictionaryFileName, '+');
+    dictionaryList = {'dictionaryDHT': -1};
     while 1:
         logLines = logFile.readline(1000000);
         if not logLines:
@@ -30,5 +11,29 @@ def dictionarySetUp(logFileName, DictionaryFileName):
         for line in logLines:
             tokens = tokenGenerator(line);
             for token in tokens:
-                tokenFind(token, dictionaryFile);
+                if dictionaryList.has_key(token):
+                    dictionaryList[token] = dictionaryList[token] + 1;
+                else:
+                    dictionaryList[token] = 1;
+    dictionaryKey = dictionaryList.keys();
+    for key in dictionaryKey:
+        dictionaryFile.writeline(key + ',' + str(dictionaryList[key]));
+    pass;
+
+def dictionaryDoubleSetUp(logFileName, DictionaryFileName):
+    logFile = open(logFileName, 'r');
+    dictionaryFile = open(DictionaryFileName, 'r');
+    dictionaryList = {'dictionaryDHT': -1};
+
+    while 1:
+        logLines = logFile.readlines(1000000);
+        if not logLines:
+            break;
+        for line in logLines:
+            tokens = tokenGenerator(line);
+            for index in range(len(tokens)):
+                if index == len(tokens)-1:
+                    break;
+                else:
+                    pass;
     pass;
