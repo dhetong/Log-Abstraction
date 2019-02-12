@@ -34,6 +34,12 @@ def dictionaryDoubleSetUp(logFileName, DictionaryFileName):
             for index in range(len(tokens)):
                 if index == len(tokens)-1:
                     break;
+                doubleTmp = tokens[index] + ',' + tokens[index+1];
+                if dictionaryList.has_key(doubleTmp):
+                    dictionaryList[doubleTmp] = dictionaryList[doubleTmp] + 1;
                 else:
-                    pass;
+                    dictionaryList[doubleTmp] = 1;
+    dictionaryKey = dictionaryList.keys();
+    for key in dictionaryKey:
+        dictionaryFile.writeline(key + ',' + str(dictionaryList[key]));
     pass;
