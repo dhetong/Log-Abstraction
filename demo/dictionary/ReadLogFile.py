@@ -24,7 +24,7 @@ def dictionarySingleSetUp(logFileName, DictionaryFileName):
 def dictionaryDoubleSetUp(logFileName, DictionaryFileName):
     logFile = open(logFileName, 'r');
     dictionaryFile = open(DictionaryFileName, 'w+');
-    dictionaryList = {'dictionaryDHT': -1};
+    dictionaryList = {'dictionary,DHT': -1};
 
     while 1:
         logLines = logFile.readlines(1000000);

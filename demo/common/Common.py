@@ -18,7 +18,6 @@ def uniSplitWord(logLine):
     tmp = re.sub(r';',' ',tmp);
     tmp = re.sub(r'\.',' ',tmp);
     tmp = re.sub(r'\/',' ',tmp);
-    tmp = re.sub(r'[0-9]*','',tmp)
     return tmp;
 
 # a function which is used to modify the log lines
