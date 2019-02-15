@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cd8b2d-ad92-4c2b-a30f-8d0a1b319687" name="Default Changelist" comment="" />
+    <list default="true" id="f0cd8b2d-ad92-4c2b-a30f-8d0a1b319687" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/dictionary/ReadLogFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo/dictionary/ReadLogFile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/parsing/MatchLine.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo/parsing/MatchLine.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +17,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/dictionary/ReadLogFile.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="85">
               <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+=======
+            <state relative-caret-position="344">
+              <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+>>>>>>> 4e9fb188269a0d87083228560d01aa9897f8223b
             </state>
           </provider>
         </entry>
@@ -34,6 +43,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/demo/common/Common.py" />
+        <option value="$PROJECT_DIR$/demo/parsing/MatchLine.py" />
         <option value="$PROJECT_DIR$/demo/dictionary/ReadLogFile.py" />
       </list>
     </option>
@@ -43,6 +54,7 @@
     <option name="width" value="1440" />
     <option name="height" value="815" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -70,9 +82,16 @@
               <item name="Log-Abstraction" type="b2602c69:ProjectViewProjectNode" />
               <item name="Log-Abstraction" type="462c0819:PsiDirectoryNode" />
               <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LogAbstraction" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LogAbstraction" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
               <item name="dictionary" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="Log-Abstraction" type="b2602c69:ProjectViewProjectNode" />
               <item name="Log-Abstraction" type="462c0819:PsiDirectoryNode" />
               <item name="demo" type="462c0819:PsiDirectoryNode" />
@@ -83,6 +102,13 @@
               <item name="Log-Abstraction" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
+=======
+              <item name="LogAbstraction" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LogAbstraction" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="parsing" type="462c0819:PsiDirectoryNode" />
+            </path>
+>>>>>>> 4e9fb188269a0d87083228560d01aa9897f8223b
           </expand>
           <select />
         </subPane>
@@ -91,8 +117,20 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
+=======
+    <property name="settings.editor.selected.configurable" value="PyConsoleConfigurable.Python Console" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="LogAbstraction" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="LogAbstraction" />
+      </console-settings>
+    </option>
+>>>>>>> 4e9fb188269a0d87083228560d01aa9897f8223b
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -124,9 +162,16 @@
     <option name="totallyTimeSpent" value="1179000" />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16449623" />
+=======
+    <frame x="0" y="23" width="1440" height="814" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
+>>>>>>> 4e9fb188269a0d87083228560d01aa9897f8223b
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
@@ -139,7 +184,11 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.1597633" />
+=======
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32963988" />
+>>>>>>> 4e9fb188269a0d87083228560d01aa9897f8223b
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="SciView" />
@@ -155,6 +204,7 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/demo/dictionary/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -174,6 +224,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+=======
+    <entry file="file://$PROJECT_DIR$/demo/common/Common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/parsing/MatchLine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/dictionary/ReadLogFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+>>>>>>> 4e9fb188269a0d87083228560d01aa9897f8223b
         </state>
       </provider>
     </entry>
