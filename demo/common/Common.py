@@ -5,6 +5,8 @@ def uniSplitWord(logLine):
     #tmp = re.sub(r'-_,\(\)\[\]', " ", logLine);
     tmp = re.sub(r'/(\d{4}[-/]\d{1,2}[-/]\d{1,2})','',logLine);
     tmp = re.sub(r'(\d{4}[-/]\d{1,2}[-/]\d{1,2}\s\d{1,2}:\d{1,2})','',tmp);
+    tmp = re.sub(r'\'',' ',tmp);
+    tmp = re.sub(r'\"',' ',tmp);
     tmp = re.sub(r'-',' ',tmp);
     tmp = re.sub(r'_',' ',tmp);
     tmp = re.sub(r',',' ',tmp);
