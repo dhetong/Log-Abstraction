@@ -100,3 +100,9 @@ def tokenMatchDouble(inputFile, outputFile, tokenDicFile, threshold):
             inFile.close();
             outFile.close();
             tokenFile.close();
+
+def tripleTokenCompare(logTokens, tokenDictionary, threshold):
+    pass;
+
+def tokenMatchTriple(inputFile, outputFile, tokenDicFile, threshold):
+    pass;

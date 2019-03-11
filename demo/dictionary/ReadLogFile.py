@@ -45,3 +45,9 @@ def dictionaryDoubleSetUp(logFileName, DictionaryFileName):
         dictionaryFile.write(key + ',' + str(dictionaryList[key]));
         dictionaryFile.write('\n');
     pass;
+
+def dictionaryTripleSetUp(logFileName, DictionaryFileName):
+    logFile = open(logFileName, 'r');
+    dictionaryFile = open(DictionaryFileName, 'w+');
+    dictionaryList = {'dictionary,DHT': -1};
+    pass;
