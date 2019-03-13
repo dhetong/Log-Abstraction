@@ -49,5 +49,24 @@ def dictionaryDoubleSetUp(logFileName, DictionaryFileName):
 def dictionaryTripleSetUp(logFileName, DictionaryFileName):
     logFile = open(logFileName, 'r');
     dictionaryFile = open(DictionaryFileName, 'w+');
-    dictionaryList = {'dictionary,DHT': -1};
+    dictionaryList = {'dictionary,DHT,triple': -1};
+
+    while 1:
+        logLines = logFile.readlines(1000000);
+        if not logLines:
+            break;
+        for line in logLines:
+            tokens = tokenGenerator(line);
+            for index in range(len(tokens)):
+                if index == len(tokens)-2:
+                    break;
+                tripleTmp = tokens[index] + ',' + tokens[index+1] + ',' + tokens[index+2];
+                if tripleTmp in dictionaryList:
+                    dictionaryList[tripleTmp] = dictionaryList[tripleTmp] + 1;
+                else:
+                    dictionaryList[tripleTmp] = 1;
+    dictionaryKey = dictionaryList.keys();
+    for key in dictionaryKey:
+        dictionaryFile.write(key + ',' + str(dictionaryList[key]));
+        dictionaryFile.write('\n');
     pass;
