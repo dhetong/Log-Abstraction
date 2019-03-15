@@ -101,13 +101,65 @@ def tokenMatchDouble(inputFile, outputFile, tokenDicFile, threshold):
             outFile.close();
             tokenFile.close();
 
-def doubleTokenCheck(logTokens, indexList):
+def checkRepeat(index, indexList):
+    for i in range(len(indexList)):
+        if index == indexList[i]:
+            return True;
+    return False;
+
+def listInsert(index, indexList):
+    for i in range(len(indexList)):
+        if i == len(indexList)-1 and index > indexList[i]:
+            indexList.append(index);
+        if indexList[i] > index:
+            indexList.insert(index, i);
+            break;
+    return indexList;
+
+def dictionaryReadDouble(doubleTokenDicFile):
+    try:
+        tokenFile = open(doubleTokenDicFile, 'r');
+        tokenDictionary = {'dictionary': -1};
+
+        tokenLines = tokenFile.readlines();
+        for tokenLine in tokenLines:
+            tokenLine = re.sub('\n', '', tokenLine);
+            tmp = tokenLine.split(',');
+            keyTmp = tmp[0] + ',' + tmp[1];
+            tokenDictionary[keyTmp] = int(tmp[2]);
+    finally:
+        tokenFile.close();
+    return tokenDictionary;
+
+def doubleTokenCheck(logTokens, indexList, doubleTokenDicFile, threshold):
+    dynamicIndex = [];
+    doubleTokenDictionary = dictionaryReadDouble(doubleTokenDicFile);
+    for i in range(len(indexList)):
+        if indexList[i]+1 == indexList[i+1]:
+            doubleTmp = logTokens[indexList[i]] + ',' + logTokens[indexList[i+1]];
+            if doubleTmp in doubleTokenDictionary and doubleTokenDictionary[doubleTmp] >= threshold:
+                pass;
+            else:
+                if i > 0 and indexList[i] > 0 and indexList[i]-1 == indexList[i-1]:
+                    doubleTmp = logTokens[indexList[i]-1] + ',' + logTokens[indexList[i]];
+                    if doubleTmp in doubleTokenDictionary and doubleTokenDictionary[doubleTmp] >= threshold:
+                        pass;
+                    else:
+                        dynamicIndex.append(indexList[i]);
+                else:
+                    dynamicIndex.append(indexList[i]);
+    return dynamicIndex;
+
+def removeRepeat(checkTokenList):
+    indexList = [];
+    for i in range(len(checkTokenList)):
+        indexTmp = checkTokenList[i];
+        if checkRepeat(indexTmp, indexList) == False:
+            indexList = listInsert(indexTmp, indexList);
+    return indexList;
     pass;
 
-def removeRepeat(indexList):
-    pass;
-
-def tripleTokenCompare(logTokens, tokenDictionary, threshold):
+def tripleTokenCompare(logTokens, triTokenDictionary, triThreshold, doubleTokenDicFile, doubleThreshold):
     logEvent = '';
     dynamicIndex = [];
     checkTokenList = [];
@@ -115,18 +167,23 @@ def tripleTokenCompare(logTokens, tokenDictionary, threshold):
         if index == len(logTokens) - 2:
             break;
         tripleTmp = logTokens[index] + ',' + logTokens[index+1] + ',' + logTokens[index+2];
-        if tripleTmp in tokenDictionary and tokenDictionary[tripleTmp] >= threshold:
+        if tripleTmp in triTokenDictionary and triTokenDictionary[tripleTmp] >= triThreshold:
             pass;
         else:
             checkTokenList.extend([index,index+1,index+2]);
-        pass;
-    pass;
+    checkTokenList = removeRepeat(checkTokenList);
+    dynamicIndex = doubleTokenCheck(logTokens, checkTokenList, doubleTokenDicFile, doubleThreshold);
+    for i in range(len(dynamicIndex)):
+        logTokens[dynamicIndex[i]] = '#';
+    for i in range(len(logTokens)):
+        logEvent = logEvent + logTokens[i] + ' ';
+    return logEvent;
 
-def tokenMatchTriple(inputFile, outputFile, tokenDicFile, threshold):
+def tokenMatchTriple(inputFile, outputFile, triTokenDicFile, doubleTokenDicFile, triThreshold, doubleThreshold):
     try:
         inFile = open(inputFile, 'r');
         outFile = open(outputFile, 'w');
-        tokenFile = open(tokenDicFile, 'r');
+        tokenFile = open(triTokenDicFile, 'r');
         tokenDictionary = {'dictionary':-1};
 
         tokenLines = tokenFile.readlines();
@@ -142,7 +199,7 @@ def tokenMatchTriple(inputFile, outputFile, tokenDicFile, threshold):
                 break;
             for logLine in logLines:
                 logTokens = tokenGenerator(logLine);
-                logEvent = tripleTokenCompare(logTokens,tokenDictionary,threshold);
+                logEvent = tripleTokenCompare(logTokens,tokenDictionary,triThreshold, doubleTokenDicFile, triThreshold);
                 logEvent = re.sub(r'^[0-9]+', '#', logEvent);
                 logEvent = re.sub(r'[ ][0-9]+',' #', logEvent);
                 outFile.write(logEvent);
