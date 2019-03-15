@@ -221,7 +221,7 @@ HttpServer2,6
 Added,5
 global,1
 filter,3
-'safety',1
+safety,1
 class=org,3
 HttpServer2$QuotingInputFilter,1
 PROXY,2

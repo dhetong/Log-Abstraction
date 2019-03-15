@@ -314,8 +314,8 @@ http,HttpServer2,6
 HttpServer2,Added,3
 Added,global,1
 global,filter,1
-filter,'safety',1
-'safety',class=org,1
+filter,safety,1
+safety,class=org,1
 class=org,apache,3
 http,HttpServer2$QuotingInputFilter,1
 Added,filter,2
