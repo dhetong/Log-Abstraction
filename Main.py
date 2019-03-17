@@ -7,12 +7,12 @@ from demo.parsing.MatchLine import tokenMatchTriple;
 
 import re;
 
-dictionarySingleSetUp('Hadoop_2k.txt','SingleDictionary.txt');
-tokenMatchSingle('Hadoop_2k.txt','LogEventSingle.txt','SingleDictionary.txt',3);
-dictionaryDoubleSetUp('Hadoop_2k.txt','DoubleDictionary.txt');
-tokenMatchDouble('Hadoop_2k.txt','LogEventDouble.txt','DoubleDictionary.txt',2);
-dictionaryTripleSetUp('Hadoop_2k.txt','TripleDictionary.txt');
-tokenMatchTriple('Hadoop_2k.txt','logEventTriple.txt','TripleDictionary.txt','DoubleDictionary.txt',2,3);
+#dictionarySingleSetUp('Hadoop_2k.txt','SingleDictionary.txt');
+#tokenMatchSingle('Hadoop_2k.txt','LogEventSingle.txt','SingleDictionary.txt',3);
+dictionaryDoubleSetUp('Apache.log','DoubleDictionary.txt');
+#tokenMatchDouble('Hadoop_2k.txt','LogEventDouble.txt','DoubleDictionary.txt',2);
+dictionaryTripleSetUp('Apache.log','TripleDictionary.txt');
+tokenMatchTriple('Apache.log','logEventTriple.txt','TripleDictionary.txt','DoubleDictionary.txt',2,3);
 
 
 #FTest = open('DoubleDictionary.txt','r');
