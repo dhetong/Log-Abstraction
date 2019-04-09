@@ -1,6 +1,8 @@
 import re;
+import os;
 
 from demo.common.Common import tokenGenerator;
+from demo.dictionary.ReadLogFile import DictionaryUpload;
 
 #the function which is used to detect dynamic and static parts based on single token
 def singleTokenCompare(logTokens, tokenDictionary, threshold):
@@ -212,4 +214,31 @@ def tokenMatchTriple(inputFile, outputFile, triTokenDicFile, doubleTokenDicFile,
             inFile.close();
             outFile.close();
             tokenFile.close();
+    pass;
+
+#new implementaion aiming at increasing speed
+def TokenMatchTriple(inputAddress, outputAddress, triThreshold, doubleThreshold):
+    sourceFileDir = os.walk(inputAddress);
+    doubleDictionaryList = {'dictionary,DHT': -1};
+    triDictionaryList = {'dictionary,DHT,triple': -1};
+
+    for path,dir_list,file_list in sourceFileDir:
+        for file_name in file_list:
+            sourceFile = os.path.join(path, file_name);
+            inFile = open(sourceFile, 'r');
+            outFile = open(outputAddress + file_name + "event.txt", 'w');
+            triDictionaryList, doubleDictionaryList = DictionaryUpload(sourceFile,doubleDictionaryList,triDictionaryList);
+            while 1:
+                logLines = inFile.readlines(100000);
+                if not logLines:
+                    break;
+                for logLine in logLines:
+                    logTokens = tokenGenerator(logLine);
+                    logEvent = tripleTokenCompare(logTokens, triDictionaryList, triThreshold, doubleDictionaryList,triThreshold);
+                    logEvent = re.sub(r'^[0-9]+', '#', logEvent);
+                    logEvent = re.sub(r'[ ][0-9]+', ' #', logEvent);
+                    outFile.write(logEvent);
+                    print(logLine + '\n');
+                    print(logEvent + '\n');
+                    outFile.write('\n');
     pass;
