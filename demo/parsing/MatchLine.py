@@ -4,6 +4,10 @@ import os;
 from demo.common.Common import tokenGenerator;
 from demo.dictionary.ReadLogFile import DictionaryUpload;
 
+from flask import Flask
+from pyspark.streaming import StreamingContext
+from pyspark import SparkContext, SparkConf
+
 #the function which is used to detect dynamic and static parts based on single token
 def singleTokenCompare(logTokens, tokenDictionary, threshold):
     logEvent = '';
@@ -230,6 +234,7 @@ def TokenMatchTriple(inputAddress, outputAddress, triThreshold, doubleThreshold)
             triDictionaryList, doubleDictionaryList = DictionaryUpload(sourceFile,doubleDictionaryList,triDictionaryList);
             while 1:
                 logLines = inFile.readlines(100000);
+
                 if not logLines:
                     break;
                 for logLine in logLines:
