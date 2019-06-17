@@ -9,6 +9,7 @@ import sys
 from pyspark import SparkContext, SparkConf
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
+from pyspark.streaming.kafka import KafkaUtils
 from uuid import uuid1
 import json
 import time, sys, cherrypy, os
@@ -48,46 +49,36 @@ main = Flask(__name__)
 #def run_MatchDouble():
 #tokenMatchDouble('Zookeeper.log','LogEventDouble.txt','DoubleDictionaryzoo.txt',2);
 
-@main.route("/", methods = ["GET", "POST"])
+@main.route("/", methods=["GET"])
 def updating():
 
     # Set up The Spark App
-    conf = SparkConf().setAppName("Log_Analyzer")
+    conf = SparkConf().setAppName("Log_Analyzer").setMaster("local[2]").setSparkHome("C://spark//spark-2.4.2-bin-hadoop2.7").set("spark.executor.memory", "2g")
     # Create Spark Context
-    sc = SparkContext(conf=conf).getOrCreate()
-                      #, pyFiles=['Common.py','ReadLogFile.py','MatchLine.py'])
-                      #.getOrCreate()
+    sc = SparkContext(conf=conf)
+    sss = sc.textFile("C://Users//skyba//Documents//GitHub//Log//logs//Zookeeper.txt")
     ssc = StreamingContext(sc, 3)
 
     # Input File Path
-    lines = ssc.textFileStream("file:///C://Users//skyba//Documents//GitHub//Log//logs")
-
-
+    lines = ssc.textFileStream("file:///Users/skyba/Documents/GitHub/Log/logs")
+    dataStream = ssc.textFileStream("C://Zookeeper");
+# sourceFile = os.path.join("C:/Users/skyba/Documents/GitHub/Log/logs", lines);
+#inFile = open(sourceFile, 'r');
+#logLines = inFile.readlines(100000);
+    test = lines.flatMap(lambda line: line.split(","))
+    test.pprint()
     #read_lines = lines.flatMap(lambda line: line.split(" ")) \
      #   .map(lambda x: (x, 1)) \
      #   .reduceByKey(lambda a, b: a + b)
 
     #tokenMatchTriple('Zookeeper.log', 'logEventTriplezoo.txt', 'TripleDictionaryzoo.txt', 'DoubleDictionaryzoo.txt', 2,3)
     #count = lines.map(tokenMatchTriple('Zookeeper.log', 'logEventTriplezoo.txt', 'TripleDictionaryzoo.txt', 'DoubleDictionaryzoo.txt', 2,3))
-    lines.pprint()
     ssc.start()
     ssc.awaitTermination()
 
-def run_server():
-    # Mount the WSGI callable object (app) on the root directory
-    cherrypy.tree.graft(updating(), '/')
 
-    # Set the configuration of the web server
-    cherrypy.config.update({
-        'engine.autoreload.on': True,
-        'log.screen': True,
-        'server.socket_port': 5432,
-        'server.socket_host': '0.0.0.0'
-    })
-
-    # Start the CherryPy WSGI web server
-    cherrypy.engine.start()
-    cherrypy.engine.block()
+        #print('rdd partitions: {}'.format(rdd.getNumPartitions()))
+        #lines.map(lambda line: read_lines() ).count()
 
 
 if __name__ == "__main__":
