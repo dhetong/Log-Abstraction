@@ -1,27 +1,25 @@
-import os
-import findspark
-findspark.init('/spark/spark-2.4.2-bin-hadoop2.7')
-from pyspark import SparkContext
-from pyspark.streaming import StreamingContext
-from pyspark.streaming.kafka import KafkaUtils
-import json
-os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-streaming-kafka_2.10:1.6.0 pyspark-shell'
-sc = SparkContext(appName="PythonSparkStreamingKafka")
-sc.setLogLevel("WARN")
-ssc = StreamingContext(sc,5)
-print('ssc =================== {} {}');
-kafkaStream = KafkaUtils.createStream(ssc, 'victoria.com:2181', 'spark-streaming', {'imagetext':1})
-print('contexts =================== {} {}');
-lines = kafkaStream.map(lambda x: x[1])
-lines.pprint()
+from random import randint
+import time
 
-ssc.start()
-ssc.awaitTermination()
+"""
+This is use for create 30 file one by one in each 5 seconds interval. 
+These files will store content dynamically from 'lorem.txt' using below code
+"""
 
 
+def main():
+    a = 1
+    with open('DoubleDictionaryzoo.txt', 'r') as file:  # reading content from 'lorem.txt' file
+        lines = file.readlines()
+        while a <= 30:
+            totalline = len(lines)
+            linenumber = randint(0, totalline - 10)
+            with open('C://Users//skyba//Documents//GitHub//Log//log.txt'.format(a), 'w') as writefile:
+                writefile.writelines(' '.join(line for line in lines[linenumber:totalline]))
+            print('creating file log.txt'.format(a))
+            a += 1
+            time.sleep(5)
 
-def decoder(msg):
-    baseMessage = json.loads(zlib.decompress(msg[4:]))
-    message = {"headers": baseMessage["headers"],
-               "data": b64decode(baseMessage["data"])}
-    return message
+
+if __name__ == '__main__':
+    main()

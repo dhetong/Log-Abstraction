@@ -1,6 +1,6 @@
 import re;
 import os;
-
+import time;
 from demo.common.Common import tokenGenerator;
 from demo.dictionary.ReadLogFile import DictionaryUpload;
 
@@ -201,9 +201,10 @@ def tokenMatchTriple(inputFile, outputFile, triTokenDicFile, doubleTokenDicFile,
             tokenDictionary[keyTmp] = int(tmp[3]);
 
         while 1:
-            logLines = inFile.readlines(100000);
+            logLines = inFile.readlines(10000);
             if not logLines:
                 break;
+
             for logLine in logLines:
                 logTokens = tokenGenerator(logLine);
                 logEvent = tripleTokenCompare(logTokens,tokenDictionary,triThreshold, doubleTokenDictionary, triThreshold);
@@ -233,8 +234,7 @@ def TokenMatchTriple(inputAddress, outputAddress, triThreshold, doubleThreshold)
             outFile = open(outputAddress + file_name + "event.txt", 'w');
             triDictionaryList, doubleDictionaryList = DictionaryUpload(sourceFile,doubleDictionaryList,triDictionaryList);
             while 1:
-                logLines = inFile.readlines(100000);
-
+                logLines = inFile.readlines(100);
                 if not logLines:
                     break;
                 for logLine in logLines:

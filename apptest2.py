@@ -2,19 +2,24 @@ import sys
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print >> sys.stderr, "Usage: apptest2.py <dir>"
-        exit(-1)
+"""
+This is use for create streaming of text from txt files that creating dynamically 
+from files.py code. This spark streaming will execute in each 3 seconds and It'll
+show number of words count from each files dynamically
+"""
 
-    sc = SparkContext(appName="HDFSWordCount")
-    ssc = StreamingContext(sc, 1)
 
-    lines = ssc.textFileStream(sys.argv[1])
-    counts = lines.flatMap(lambda line: line.split(" "))\
-                  .map(lambda x: (x, 1))\
-                  .reduceByKey(lambda a, b: a+b)
+def main():
+    sc = SparkContext(appName="PysparkStreaming")
+    ssc = StreamingContext(sc, 5)   #Streaming will execute in each 3 seconds
+    lines = ssc.textFileStream('C://Users//skyba//Documents//GitHub//Log//')  #'log/ mean directory name
+    counts = lines.flatMap(lambda line: line.split("/n")) \
+        .map(lambda x: (x, 1)) \
+        .reduceByKey(lambda a, b: a + b)
     counts.pprint()
-
     ssc.start()
     ssc.awaitTermination()
+
+
+if __name__ == "__main__":
+    main()
