@@ -51,42 +51,18 @@ main = Flask(__name__)
 
 @main.route("/", methods=["GET","POST"])
 def updating():
-    inputAddress = "C://Users//skyba//Documents//GitHub//Log//logs//"
-    sourceFileDir = os.walk(inputAddress);
 
-    for path, dir_list, file_list in sourceFileDir:
-        for file_name in file_list:
-            sourceFile = os.path.join(path, file_name);
-        print(sourceFile)
-    # Set up The Spark App
-    conf = SparkConf().setAppName("Log_Analyzer").setMaster("local[2]").setSparkHome("C://spark//spark-2.4.2-bin-hadoop2.7").set("spark.executor.memory", "2g")
-    # Create Spark Context
-    sc = SparkContext(conf=conf)
-    sss = sc.textFile("C://Users//skyba//Documents//GitHub//Log//logs//Zookeeper.txt")
-    ssc = StreamingContext(sc, 3)
+    sc = SparkContext(appName="PysparkStreaming")
+    ssc = StreamingContext(sc, 1)  # Streaming will execute in each 3 seconds
+    lines = ssc.textFileStream("C://Users//skyba//Documents//GitHub//Log")  # 'log/ mean directory name
+    # lines = ssc.socketTextStream(hostname='0.0.0.0',port='8000')
 
-    # Input File Path
-    lines = ssc.textFileStream('C://Users//skyba//Documents//GitHub//Log//logs')
+    counts = lines.map(lambda line: line)
 
-    dataStream = ssc.textFileStream("C://Zookeeper");
-# sourceFile = os.path.join("C:/Users/skyba/Documents/GitHub/Log/logs", lines);
-#inFile = open(sourceFile, 'r');
-#logLines = inFile.readlines(100000);
-    test = lines.flatMap(lambda line: line.split(","))
-   # test.pprint()
-    #read_lines = lines.flatMap(lambda line: line.split(" ")) \
-     #   .map(lambda x: (x, 1)) \
-     #   .reduceByKey(lambda a, b: a + b)
-
-
-    #tokenMatchTriple('Zookeeper.log', 'logEventTriplezoo.txt', 'TripleDictionaryzoo.txt', 'DoubleDictionaryzoo.txt', 2,3)
-    #count = lines.map(tokenMatchTriple('Zookeeper.log', 'logEventTriplezoo.txt', 'TripleDictionaryzoo.txt', 'DoubleDictionaryzoo.txt', 2,3))
+    p = counts.pprint()
+    counts.saveAsTextFiles("C://Users//skyba//Documents//GitHub//Log//logs//file2.txt")
     ssc.start()
     ssc.awaitTermination()
-
-
-        #print('rdd partitions: {}'.format(rdd.getNumPartitions()))
-        #lines.map(lambda line: read_lines() ).count()
 
 
 if __name__ == "__main__":

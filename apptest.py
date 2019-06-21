@@ -9,12 +9,12 @@ These files will store content dynamically from 'lorem.txt' using below code
 
 def main():
     a = 1
-    with open('DoubleDictionaryzoo.txt', 'r') as file:  # reading content from 'lorem.txt' file
+    with open('Zookeeper.txt', 'r') as file:  # reading content from 'lorem.txt' file
         lines = file.readlines()
         while a <= 30:
             totalline = len(lines)
             linenumber = randint(0, totalline - 10)
-            with open('C://Users//skyba//Documents//GitHub//Log//log.txt'.format(a), 'w') as writefile:
+            with open('C://Users//skyba//Documents//GitHub//Log//log{}.txt'.format(a), 'w') as writefile:
                 writefile.writelines(' '.join(line for line in lines[linenumber:totalline]))
             print('creating file log.txt'.format(a))
             a += 1
