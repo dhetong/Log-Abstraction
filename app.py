@@ -12,7 +12,7 @@ from pyspark.streaming.kafka import KafkaUtils
 from pyspark.streaming.kafka import KafkaUtils
 from uuid import uuid1
 import json
-import time, sys, cherrypy, os
+
 
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SparkSession
@@ -53,17 +53,17 @@ main = Flask(__name__)
 def updating():
 
     sc = SparkContext(appName="PysparkStreaming")
-    ssc = StreamingContext(sc, 1)  # Streaming will execute in each 3 seconds
-    lines = ssc.textFileStream("C://Users//skyba//Documents//GitHub//Log")  # 'log/ mean directory name
+    ssc = StreamingContext(sc, 5)  # Streaming will execute in each 3 seconds
+    lines = ssc.textFileStream("/home/users/cchen/web")  # 'log/ mean directory name
     # lines = ssc.socketTextStream(hostname='0.0.0.0',port='8000')
 
     counts = lines.map(lambda line: line)
 
     p = counts.pprint()
-    counts.saveAsTextFiles("C://Users//skyba//Documents//GitHub//Log//logs//file2.txt")
+    counts.saveAsTextFiles("/home/users/cchen/web/webre/result_5 sec")
     ssc.start()
     ssc.awaitTermination()
 
 
 if __name__ == "__main__":
-    main.run()
+    main.run(host="0.0.0.0",port=8899)
