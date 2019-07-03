@@ -9,12 +9,11 @@ import re;
 
 #dictionarySingleSetUp('Hadoop_2k.txt','SingleDictionary.txt');
 #tokenMatchSingle('Hadoop_2k.txt','LogEventSingle.txt','SingleDictionary.txt',3);
-#dictionaryDoubleSetUp('Apache.log','DoubleDictionary.txt');
+#dictionaryDoubleSetUp('Zookeeper.log','DoubleDictionaryZoo1.txt');
 #tokenMatchDouble('Hadoop_2k.txt','LogEventDouble.txt','DoubleDictionary.txt',2);
-#dictionaryTripleSetUp('Apache.log','TripleDictionary.txt');
-tokenMatchTriple('Zookeeper.log','logEventTripleZoo.txt','TripleDictionaryzoo.txt','DoubleDictionaryzoo.txt',2,3);
-tokenMatchTriple('Zookeeper.log','logEventTripleZoo2.txt','TripleDictionaryzoo.txt','DoubleDictionaryzoo.txt',2,3);
-tokenMatchTriple('Zookeeper.log','logEventTripleZoo3.txt','TripleDictionaryzoo.txt','DoubleDictionaryzoo.txt',2,3);
+#dictionaryTripleSetUp('Zookeeper.log','TripleDictionaryZoo1.txt');
+tokenMatchTriple('Zookeeper.log','logEventTripleZoo5.txt','TripleDictionaryZoo1.txt','DoubleDictionaryZoo1.txt',2,3);
+
 #FTest = open('DoubleDictionary.txt','r');
 #Lines = FTest.readlines();
 #for line in Lines:

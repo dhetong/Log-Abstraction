@@ -10,9 +10,6 @@ from pyspark import SparkContext, SparkConf
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
 from pyspark.streaming.kafka import KafkaUtils
-from uuid import uuid1
-import json
-import time, sys, cherrypy, os
 
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SparkSession
